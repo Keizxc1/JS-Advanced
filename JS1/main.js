@@ -2,6 +2,7 @@ const btn1 = document.getElementById("btn1");
 const btn2 = document.getElementById("btn2");
 const btn3 = document.getElementById("btn3");
 const btn4 = document.getElementById("btn4");
+const btn5 = document.getElementById("btn5");
 
 const tbl = document.getElementById("tblNumbers");
 
@@ -55,6 +56,7 @@ btn3.addEventListener("click", () => {
     }
 
     document.getElementById("btn4").style.display = "none";
+    document.getElementById("btn5").style.display = "none";
 
 });
 
@@ -74,6 +76,37 @@ btn4.addEventListener("click", () => {
     trTotal.appendChild(tdTotalLabel);
     trTotal.appendChild(tdTotalValue);
     tbl.appendChild(trTotal);
+});
+
+btn5.addEventListener("click", () => {
+    if(numbersArr.length > 0) {
+        const highest = Math.max(...numbersArr);
+        const lowest = Math.min(...numbersArr);
+
+        const trHighest = document.createElement("tr");
+        const tdHighestLabel = document.createElement("td");
+        const tdHighestValue = document.createElement("td");
+        tdHighestLabel.style.fontWeight = "bold";
+        tdHighestLabel.style.color = "red";
+        tdHighestLabel.innerHTML = "HIGHEST";
+        tdHighestValue.style.color = "red";
+        tdHighestValue.innerHTML = highest;
+        trHighest.appendChild(tdHighestLabel);
+        trHighest.appendChild(tdHighestValue);
+        tbl.appendChild(trHighest);
+
+        const trLowest = document.createElement("tr");
+        const tdLowestLabel = document.createElement("td");
+        const tdLowestValue = document.createElement("td");
+        tdLowestLabel.style.fontWeight = "bold";
+        tdLowestLabel.style.color = "orange";
+        tdLowestLabel.innerHTML = "LOWEST";
+        tdLowestValue.style.color = "orange";
+        tdLowestValue.innerHTML = lowest;
+        trLowest.appendChild(tdLowestLabel);
+        trLowest.appendChild(tdLowestValue);
+        tbl.appendChild(trLowest);
+    }
 });
 
 function deleteNumber(i) {
@@ -154,6 +187,7 @@ function iterateNumbers() {
 
             if(!(numbersArr.length == 0)) {
                 document.getElementById("btn4").style.display = "inline";
+                document.getElementById("btn5").style.display = "inline";
             }
             
             total += numbersArr[i];
